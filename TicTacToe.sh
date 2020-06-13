@@ -211,6 +211,17 @@ function takeCenter() {
         fi
 }
 
+function takeAvailableSides() {
+        for((m=2;m<=8;m+=2))
+        do
+                if [[ ${board[$m]} == . ]]
+                then
+                        board[$m]=$computerLatter
+                        ((count++))
+                        break
+                fi
+        done
+}
 function checkingGameStatus() {
         if [[ $winner -eq 1 ]]
         then
@@ -219,18 +230,14 @@ function checkingGameStatus() {
                 exit
         elif [[ $count -ge $TOTAL_CELL ]]
         then
-		echo "=================="
+		echo "=========================="
 		displayBoard
                 echo "game is tie"
         fi
 }
 
 resettingBoard
-
 tossToPlay
-
-
-
 while [[ $count -ne $TOTAL_CELL ]]
 do
 	#displayBoard
