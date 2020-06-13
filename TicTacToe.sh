@@ -34,20 +34,21 @@ function tossToPlay() {
                 then
                         playerLatter=$l
                         computerLatter=O
-                        echo "player latter : $playerLatter"
-                        echo "computer latter : $computerLatter"
 
                 else
                         playerLatter=$l
                         computerLatter=X
-                        echo "player latter : $playerLatter"
-                        echo "computer latter : $computerLatter"
                 fi
 
 
         else
                 echo "Computer will play first."
         fi
+}
+function computerPlaying() {
+        echo "Computer turn: "
+        computerPlayingToWin
+        computerPlayingToBlock
 }
 
 function switchPlayer() {
@@ -59,7 +60,7 @@ function switchPlayer() {
         else
                 computerPlaying
         fi
-
+	winningCondition $turnChange
 }
 
 
@@ -123,6 +124,27 @@ function computerPlayingToWin() {
                         else
                                 board[$j]="."
                                 #block=0
+                        fi
+                fi
+        done
+}
+function computerPlayingToBlock() {
+        for((k=1;k<=$TOTAL_CELL;k++))
+        do
+                if [[ ${board[$k]} == . ]]
+                then
+                        board[$k]=$playerLatter
+                        winningCondition $playerLatter
+                        if [[ $winner -eq 1 ]]
+                        then
+                                board[$k]=$computerLatter
+                                winner=0
+                                #block=1
+                                ((count++))
+                                displayBoard
+                                break
+                        else
+                                board[$k]="."
                         fi
                 fi
         done
