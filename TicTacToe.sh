@@ -6,7 +6,6 @@ declare -a board
 function resettingBoard() {
         board=(. . . . . . . . . .)
 }
-resettingBoard
 function displayBoard() {
 
         echo "***TicTacToe Board***"
@@ -16,4 +15,15 @@ function displayBoard() {
         echo "**********************"
 
 }
+
+function tossToPlay() {
+        if [ $((RANDOM%2)) -eq 0 ]
+        then
+                echo "Player will play first."
+        else
+                echo "Computer will play first."
+        fi
+}
+resettingBoard
 displayBoard
+tossToPlay
