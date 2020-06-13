@@ -1,7 +1,12 @@
 #!/bin/bash
 echo "Weclome to Tic Tac Toe Game."
+#constant
+TOTAL_CELL=9
+
 #variable
-player=O
+count=0
+switchPlayer=0
+playerLatter=O
 computerLatter=X
 #array declaration of array
 declare -a board
@@ -45,6 +50,28 @@ function tossToPlay() {
         fi
 }
 
+function switchPlayer() {
+        echo "player latter : $playerLatter"
+        echo "computer latter : $computerLatter"
+        if [[ $switchPlayer == 0 ]]
+        then
+                playerPlaying
+        else
+                computerPlaying
+        fi
+
+}
+
+
+function playerPlaying() {
+        echo "Player turn: "
+        read -p "Enter position between 1 to 9: " position
+        board[$position]=$playerLatter
+        switchPlayer=1
+}
 resettingBoard
-displayBoard
+
 tossToPlay
+displayBoard
+switchPlayer
+displayBoard
