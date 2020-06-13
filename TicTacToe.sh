@@ -194,9 +194,22 @@ function takeAvailableCorners() {
                         break
                 fi
         done
-        #takeCenter
+        takeCenter
 }
 
+function takeCenter() {
+        if [[ $center -ne 1 ]]
+        then
+                local middle=$(($TOTAL_CELL+1))/2
+                if [[  ${board[$middle]} == . ]]
+                then
+                        board[$middle]=$computerLatter
+                        ((count++))
+                else
+                        takeAvailableSides
+                fi
+        fi
+}
 
 function checkingGameStatus() {
         if [[ $winner -eq 1 ]]
