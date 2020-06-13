@@ -108,6 +108,30 @@ function winningCondition() {
                 winner=1
         fi
 }
+function computerPlayingToWin() {
+        for((j=1;j<=$TOTAL_CELL;j++))
+        do
+                if [[ ${board[$j]} == . ]]
+                then
+                        board[$j]=$computerLatter
+                        winningCondition $computerLatter
+                        if [[ $winner -eq 1 ]]
+                        then
+                                displayBoard
+                                echo "Winner is $computer's"
+                                exit
+                        else
+                                board[$j]="."
+                                #block=0
+                        fi
+                fi
+        done
+}
+
+
+
+
+
 function checkingGameStatus() {
         if [[ $winner -eq 1 ]]
         then
