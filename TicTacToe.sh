@@ -240,9 +240,8 @@ resettingBoard
 tossToPlay
 while [[ $count -ne $TOTAL_CELL ]]
 do
-	#displayBoard
+
         switchPlayer
-        #displayBoard
         checkingGameStatus
-	#empty
+
 done
