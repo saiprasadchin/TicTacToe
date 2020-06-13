@@ -14,6 +14,16 @@ declare -a board
 function resettingBoard() {
         board=(. . . . . . . . . .)
 }
+function empty() {
+        index=0
+        for((i=1;i<=9;i++)){
+            if [[ ${board[$i]} == . ]]
+            then
+                 emptyCells[$index]=$i
+                let index++
+            fi
+        }
+}
 
 function displayBoard() {
 
@@ -86,8 +96,8 @@ function playerPlaying() {
 	displayBoard
 	echo "player latter : $playerLatter"
         echo "computer latter : $computerLatter"
-
-        read -p "Select your Cell 1 to 9 : " position
+	echo "Empty Cells :${emptyCells[@]}"
+        read -p "Select your Cell : " position
 
         turnChange=$playerLatter
         checkingEmptyCell
@@ -240,8 +250,9 @@ resettingBoard
 tossToPlay
 while [[ $count -ne $TOTAL_CELL ]]
 do
-
+	empty
         switchPlayer
         checkingGameStatus
+        emptyCells=()
 
 done
